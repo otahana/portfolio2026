@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>オオタ | ポートフォリオ</title>
+<link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#ff5a8a; --cream:#fbf1dc; --yellow:#f8e68a; --blue:#0a2ccc; --teal:#7fd3d8;
+  --ink:#6b5a5a; --paper:#ffffff; --outer:#f2eee8; --line:#e6e6e6;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--outer);color:var(--ink);font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;line-height:1.8}
+img{max-width:100%;height:auto;display:block}
+
+.page{max-width:520px;margin:0 auto;background:var(--paper);overflow:hidden;position:relative;min-height:100vh}
+.pop{font-family:"Hachi Maru Pop","Zen Maru Gothic",sans-serif}
+section{position:relative}
+
+/* hero */
+.hero{
+  background: url("images/桃色＿背景上.png") no-repeat top center / 100% auto;
+  text-align:center;
+  padding:36px 20px 44px;
+  position:relative;
+  overflow:hidden;
+}
+.hero-title{width:220px;margin:0 auto}
+.hero-sub{width:160px;margin:6px auto 0}
+.art{width:240px;margin:14px auto 0;filter:drop-shadow(0 8px 0 rgba(0,0,0,.12))}
+
+/* ワタシバッジ */
+.badge{
+  position:absolute;
+  right:18px;
+  bottom:24px;
+  width:96px;
+  display:block;
+  transition:transform .2s;
+}
+.badge:hover{transform:scale(1.06) rotate(-3deg)}
+
+/* labels */
+.label{display:inline-block;margin:0 0 0 12px;padding:6px 26px;border-radius:999px;background:var(--cream);font-size:18px;letter-spacing:.35em;color:var(--ink)}
+.kana{display:block;margin:2px 0 0 56px;font-size:11px;letter-spacing:.2em}
+
+/* profile */
+.profile{padding:16px 12px 24px;background:var(--paper)}
+.profile .row{display:flex;gap:18px;align-items:flex-start;padding:22px 12px 8px}
+.avatar{
+  flex:none;
+  width:76px;
+  height:76px;
+  position:relative;
+  background: url("images/アイコン.png") no-repeat center / contain;
+}
+.avatar img{
+  position:absolute;
+  width:92%;
+  left:4%;
+  bottom:-13px;
+  max-width:none;
+  background:transparent;
+}
+.profile p{margin:0;font-size:14px}
+
+/* もっとボタン */
+.more{
+  display:flex;
+  justify-content:flex-end;
+  margin:10px 24px 12px 0;
+  text-decoration:none;
+}
+.more-inner{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  transition:transform .2s;
+}
+.more:hover .more-inner{transform:translateX(6px)}
+.more-inner img{width:140px}
+.more-inner span{
+  position:absolute;
+  left:0;
+  width:64px;
+  text-align:center;
+  color:var(--ink);
+  font-size:12px;
+  letter-spacing:.05em;
+}
+
+/* works（トップページ） */
+.works{
+  background: url("images/黄色＿背景中.png") no-repeat top center / 100% 100%;
+  padding:42px 12px 54px;
+  color:#6b5a5a;
+}
+.works .label{background:#fff;color:#6b5a5a}
+.works .kana{color:#6b5a5a}
+.grid{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:34px 22px;margin:22px 0 28px}
+.card{text-decoration:none;color:inherit;display:block;min-width:0}
+.thumb{width:100%;aspect-ratio:1/.94;background:#fff;border-radius:26px;box-shadow:0 2px 0 #cdb96a;display:grid;place-items:center;font-size:42px;color:#e9dfae;overflow:hidden;transition:transform .2s}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb img,.thumb video{width:100%;height:100%;object-fit:cover;display:block}
+.leaf-illus img,.leaf-illus video{width:100%;height:100%;object-fit:cover;display:block}
+.card:hover .thumb,.card:focus-visible .thumb{transform:translateY(-4px)}
+.meta{display:flex;align-items:center;gap:10px;margin:6px 0 0 14px;font-size:12px}
+.tag{background:var(--teal);color:#fff;padding:0 10px;border-radius:999px;font-size:11px;white-space:nowrap}
+.meta span.t{flex:1;border-bottom:2px solid #fff;padding-bottom:1px;color:#6b5a5a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* トップにもどる・うえにもどるボタン */
+.totop{display:flex;justify-content:center;margin:28px 0 0}
+.totop a{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  transition:transform .2s;
+  cursor:pointer;
+}
+.totop a:hover{transform:translateY(-3px)}
+.totop img{width:170px}
+.totop span{
+  position:absolute;
+  color:#fff;
+  font-size:13px;
+  padding-left:22px;
+  letter-spacing:.05em;
+}
+
+/* footer（トップページ専用） */
+footer.main-footer{
+  background: url("images/青＿背景下.png") no-repeat top center / 100% 100%;
+  margin-top:-36px;
+  padding:46px 12px calc(24px + env(safe-area-inset-bottom,0px));
+  color:#fff;
+  text-align:center;
+  position:relative;
+  z-index:1;
+}
+footer.main-footer .sns{display:flex;justify-content:center;gap:20px;margin:8px 0 18px;font-size:13px;flex-wrap:wrap}
+footer.main-footer .sns a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+footer.main-footer nav{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+footer.main-footer nav a{
+  background: url("images/under.png") no-repeat center / 100% 100%;
+  color:var(--ink);
+  text-decoration:none;
+  font-size:13px;
+  padding:8px 22px;
+  letter-spacing:.12em;
+  display:inline-block;
+  transition:transform .2s;
+}
+footer.main-footer nav a:hover{transform:translateY(-2px)}
+
+/* サブページ用のシンプルな青い波線フッター（ボタンなし） */
+.sub-footer{
+  background: url("images/青＿背景下.png") no-repeat top center / 100% 100%;
+  margin-top:32px;
+  padding:34px 12px calc(16px + env(safe-area-inset-bottom,0px));
+  color:rgba(255,255,255,.85);
+  text-align:center;
+  font-size:11px;
+  letter-spacing:.15em;
+}
+
+a:focus-visible{outline:3px solid #333;outline-offset:3px}
+
+/* アニメーション */
+.art{animation:slideIn 1.4s cubic-bezier(.22,1,.36,1) both}
+@keyframes slideIn{0%{transform:translateX(-120%);opacity:0}60%{transform:translateX(6%);opacity:1}100%{transform:none;opacity:1}}
+.badge{animation:fluffy 1.4s ease-out 1.2s both}
+@keyframes fluffy{from{opacity:0;transform:translateY(14px) scale(.85)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.art,.badge{animation:none}}
+
+/* サブページ共通ナビ */
+.sub-nav{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.back{display:inline-block;background:var(--cream);color:var(--ink);text-decoration:none;padding:5px 16px;border-radius:999px;font-size:12px;transition:transform .2s}
+.back:hover{transform:translateX(-2px)}
+
+/* 共通キャッチコピー枠 */
+.catchcopy{
+  background:#f0fafb;
+  border-left:4px solid var(--teal);
+  padding:10px 14px;
+  border-radius:0 12px 12px 0;
+  font-weight:700;
+  font-size:14px;
+  color:#4a6b6e;
+  margin-bottom:12px;
+  line-height:1.6;
+}
+
+/* =========================================
+   作品詳細ページ（白背景・作品に集中できる構成）
+   ========================================= */
+.detail-page{padding:26px 18px 0;background:var(--paper)}
+.d-header{margin:6px 0 14px}
+.d-tags{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.d-year{font-size:12px;color:#8e7d7d}
+.detail-page h2{margin:0;font-size:22px;line-height:1.4;color:var(--ink)}
+
+.dthumb{
+  aspect-ratio:16/11;
+  background:var(--cream);
+  border-radius:22px;
+  border:2px solid #f0e4ca;
+  display:grid;
+  place-items:center;
+  font-size:56px;
+  color:#d9cca8;
+  margin:14px 0 16px;
+  overflow:hidden;
+  position:relative;
+}
+.dthumb img{width:100%;height:100%;object-fit:contain}
+.dthumb video{width:100%;height:100%;object-fit:contain;background:#000;display:block;cursor:pointer}
+
+/* 動画と一目でわかる再生ボタンオーバーレイ */
+.video-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.35);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  cursor:pointer;
+  transition:background .2s, opacity .2s;
+}
+.video-overlay:hover{background:rgba(0,0,0,.22)}
+.video-overlay.hidden{opacity:0;pointer-events:none}
+.play-circle{
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  background:var(--pink);
+  border:3px solid #fff;
+  box-shadow:0 4px 14px rgba(0,0,0,.4);
+  display:grid;
+  place-items:center;
+  transition:transform .2s;
+}
+.video-overlay:hover .play-circle{transform:scale(1.1)}
+.play-circle::after{
+  content:"";
+  display:block;
+  width:0;
+  height:0;
+  border-style:solid;
+  border-width:11px 0 11px 20px;
+  border-color:transparent transparent transparent #fff;
+  margin-left:4px;
+}
+.play-badge{
+  background:rgba(0,0,0,.78);
+  color:#fff;
+  font-size:12px;
+  padding:4px 14px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.35);
+  letter-spacing:.05em;
+}
+
+/* 作品URLリンクボタン */
+.live-btn{
+  display:block;
+  text-align:center;
+  background:var(--pink);
+  color:#fff;
+  text-decoration:none;
+  padding:12px 18px;
+  border-radius:999px;
+  font-size:14px;
+  margin:0 0 22px;
+  box-shadow:0 4px 0 #d43d69;
+  transition:transform .2s;
+}
+.live-btn:hover{transform:translateY(-2px)}
+
+.spec-box{
+  background:var(--cream);
+  border-radius:18px;
+  padding:14px 16px;
+  margin-bottom:24px;
+  display:grid;
+  gap:8px;
+  font-size:13px;
+}
+.spec-row{display:flex;gap:12px;border-bottom:1px dashed #e2d5b8;padding-bottom:6px}
+.spec-row:last-child{border-bottom:none;padding-bottom:0}
+.spec-label{flex:none;width:78px;font-weight:700;color:var(--pink);font-size:12px}
+.spec-val{flex:1}
+
+.d-block{margin-bottom:26px}
+.d-block h3{
+  font-size:15px;
+  margin:0 0 10px;
+  padding-left:12px;
+  border-left:4px solid var(--pink);
+  letter-spacing:.06em;
+}
+.d-block p{margin:0 0 10px;font-size:14px}
+.d-block p:last-child{margin-bottom:0}
+
+/* 駄菓子ギミック紹介などの特徴カード */
+.gimmick-list{display:grid;gap:10px;margin-top:8px}
+.gimmick-card{
+  background:#f7fcfc;
+  border:1.5px solid var(--teal);
+  border-radius:14px;
+  padding:10px 14px;
+  font-size:13px;
+}
+.gimmick-card b{display:block;color:#3d8b91;margin-bottom:2px}
+
+.point-list{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.point-list li{background:#fff9eb;border:1.5px solid var(--yellow);border-radius:14px;padding:10px 14px;font-size:13px}
+.point-list b{color:var(--pink);display:block;margin-bottom:2px}
+
+.sub-gallery{display:grid;grid-template-columns:repeat(auto-fit, minmax(210px, 1fr));gap:12px;margin-top:10px}
+.sub-shot{background:var(--cream);border-radius:14px;display:grid;place-items:center;font-size:12px;color:#a8997a;overflow:hidden;border:1.5px solid #e8dcc0}
+.sub-shot img{width:100%;height:auto;display:block}
+
+.pn{display:flex;justify-content:space-between;gap:10px;margin-top:32px;padding-top:20px;border-top:1.5px dashed var(--line)}
+.pn a{background:var(--pink);color:#fff;text-decoration:none;padding:6px 18px;border-radius:999px;font-size:13px;transition:transform .2s}
+.pn a:hover{transform:translateY(-2px)}
+
+/* =========================================
+   全作品一覧ページ（絵本テーマ・インタラクティブUI）
+   ========================================= */
+.archive-page{padding:26px 16px 0;background:var(--paper)}
+.book-intro{font-size:13px;margin:10px 0 18px;color:var(--ink)}
+
+.book-cover{
+  background:#ff759c;
+  padding:10px 10px 14px;
+  border-radius:22px;
+  box-shadow:0 8px 0 #d94a73, 0 12px 24px rgba(0,0,0,.1);
+  position:relative;
+}
+.book-spread{
+  background:#fffdf8;
+  border-radius:14px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  position:relative;
+  min-height:330px;
+  box-shadow:inset 0 0 18px rgba(180,150,100,.12);
+  overflow:hidden;
+  perspective:1200px;
+}
+.book-spread::after{
+  content:"";
+  position:absolute;
+  top:0;bottom:0;left:50%;
+  width:24px;
+  transform:translateX(-50%);
+  background:linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(120,95,70,.12) 48%, rgba(80,60,40,.22) 50%, rgba(120,95,70,.1) 52%, rgba(0,0,0,0) 100%);
+  pointer-events:none;
+  z-index:2;
+}
+.book-leaf{
+  padding:16px 12px 14px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  position:relative;
+  transition:transform .45s cubic-bezier(.22,1,.36,1), opacity .35s ease;
+}
+.book-leaf.left{border-right:1px solid #f0e6d2}
+.book-leaf.turning-next{transform:rotateY(-18deg) scale(.97);opacity:.35}
+.book-leaf.turning-prev{transform:rotateY(18deg) scale(.97);opacity:.35}
+
+.leaf-card{text-decoration:none;color:inherit;display:block;height:100%}
+.leaf-illus{
+  aspect-ratio:1/1;
+  background:var(--cream);
+  border-radius:16px;
+  border:2px solid #f2e4c6;
+  display:grid;
+  place-items:center;
+  font-size:38px;
+  color:#d9cca8;
+  margin-bottom:10px;
+  overflow:hidden;
+  transition:transform .25s;
+}
+.leaf-card:hover .leaf-illus{transform:scale(1.03) rotate(-1.5deg)}
+.leaf-illus img{width:100%;height:100%;object-fit:cover}
+.leaf-cat{display:inline-block;background:var(--teal);color:#fff;font-size:10px;padding:0 8px;border-radius:999px;margin-bottom:4px}
+.leaf-title{font-size:13px;font-weight:700;line-height:1.35;margin:0 0 4px;color:var(--ink)}
+.leaf-sub{font-size:11px;line-height:1.4;opacity:.8;margin:0}
+.leaf-num{font-size:10px;text-align:center;opacity:.6;margin-top:8px;letter-spacing:.15em}
+
+.bookmark-ribbon{
+  position:absolute;
+  top:-4px;
+  right:22px;
+  width:22px;
+  height:34px;
+  background:var(--yellow);
+  clip-path:polygon(0 0, 100% 0, 100% 100%, 50% 78%, 0 100%);
+  box-shadow:0 2px 4px rgba(0,0,0,.15);
+  z-index:3;
+}
+
+.book-controls{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:18px;
+  gap:8px;
+}
+.flip-btn{
+  background:var(--cream);
+  border:2px solid #ebd9b5;
+  color:var(--ink);
+  padding:7px 14px;
+  border-radius:999px;
+  font-size:12px;
+  cursor:pointer;
+  transition:transform .2s, background .2s;
+}
+.flip-btn:hover:not(:disabled){background:var(--yellow);transform:translateY(-2px)}
+.flip-btn:disabled{opacity:.4;cursor:default}
+.page-dots{display:flex;gap:6px;align-items:center}
+.page-dot{width:8px;height:8px;border-radius:50%;background:#e0d6c3;transition:transform .2s, background .2s}
+.page-dot.active{background:var(--pink);transform:scale(1.3)}
+
+/* 自己紹介詳細ページ */
+.about-page{padding:28px 18px 0;background:var(--paper)}
+.about-hero{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  background:var(--cream);
+  padding:20px 18px 24px;
+  border-radius:22px;
+  margin:16px 0 24px;
+}
+.about-avatar{
+  flex:none;
+  width:84px;
+  height:84px;
+  position:relative;
+  background: url("images/アイコン.png") no-repeat center / contain;
+}
+.about-avatar img{
+  position:absolute;
+  width:92%;
+  left:4%;
+  bottom:-14px;
+  max-width:none;
+  background:transparent;
+  border-radius:0;
+}
+.about-hero .ruby{font-size:11px;letter-spacing:.15em;display:block;margin-bottom:-2px}
+.about-hero h2{margin:0;font-size:21px;letter-spacing:.08em}
+.about-hero .univ{margin:4px 0 0;font-size:12px;line-height:1.45}
+.about-hero .role{display:inline-block;margin-top:6px;background:var(--pink);color:#fff;font-size:11px;padding:2px 10px;border-radius:999px}
+
+.about-block{margin-bottom:26px}
+.about-block h3{
+  font-size:15px;
+  margin:0 0 10px;
+  padding-left:12px;
+  border-left:4px solid var(--pink);
+  letter-spacing:.08em;
+}
+.about-block p{margin:0;font-size:14px}
+
+.award-list{display:grid;gap:10px}
+.award-box{background:#fff4f7;border:1.5px solid var(--pink);border-radius:14px;padding:10px 14px;font-size:13px}
+.award-badge{display:inline-block;background:var(--pink);color:#fff;font-size:11px;padding:1px 9px;border-radius:999px;margin-bottom:3px}
+
+.skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.skill-card{background:var(--cream);padding:10px 12px;border-radius:14px;font-size:13px}
+.skill-card .name{font-weight:700;display:block;color:var(--ink)}
+.skill-card .yr{display:inline-block;margin-top:3px;background:#fff;color:var(--pink);font-size:11px;padding:1px 8px;border-radius:999px;font-weight:700}
+.skill-card .desc{display:block;font-size:11px;margin-top:4px;line-height:1.4;opacity:.9}
+
+.strength-list{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.strength-list li{background:#fff9eb;border:1.5px solid var(--yellow);border-radius:14px;padding:10px 14px;font-size:13px}
+.strength-list b{display:block;color:var(--pink);margin-bottom:2px}
+
+.history-list{list-style:none;padding:0;margin:0;font-size:13px;border-top:1px dashed var(--line)}
+.history-list li{padding:9px 0;border-bottom:1px dashed var(--line);display:flex;gap:12px;align-items:baseline}
+.history-list span{flex:none;font-weight:700;color:var(--pink);width:70px;font-size:12px}
+
+.like-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.like-tags span{background:var(--cream);font-size:12px;padding:2px 10px;border-radius:999px}
+
+.vivivit-btn{
+  display:block;
+  text-align:center;
+  background:var(--teal);
+  color:#fff;
+  text-decoration:none;
+  padding:10px 16px;
+  border-radius:999px;
+  font-size:13px;
+  margin-top:14px;
+  transition:transform .2s;
+}
+.vivivit-btn:hover{transform:translateY(-2px)}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="page" id="top">
+
+<!-- 1. トップページ -->
+<div id="home">
+  <header class="hero">
+    <h1 class="hero-title"><img src="images/オオタ.png" alt="オオタ"></h1>
+    <p class="hero-sub"><img src="images/ota.png" alt="Ota"></p>
+    <div class="art"><img src="images/カエル.png" alt="車に乗ったカエルのイラスト"></div>
+    <a class="badge" href="#about" aria-label="自己紹介ページへ"><img src="images/ワタシ.png" alt="ワタシ"></a>
+  </header>
+
+  <section class="profile" id="profile">
+    <span class="label pop">PROFiLE</span>
+    <span class="kana pop">ワタシについて</span>
+    <div class="row">
+      <div class="avatar"><img src="images/hyoko.png" alt="プロフィールアイコン"></div>
+      <p>はじめまして、太田 華（オオタ ハナ）です。東京造形大学メディアデザイン専攻の3年生です。「見やすさ、使いやすさ、使いたくなる楽しさ」を大切に、Web・アプリのUI/UXやイラストを制作しています。</p>
+    </div>
+    <a class="more" href="#about">
+      <div class="more-inner">
+        <img src="images/motto.png" alt="">
+        <span class="pop">もっと</span>
+      </div>
+    </a>
+  </section>
+
+  <section class="works" id="works">
+    <span class="label pop">WORKS</span>
+    <span class="kana pop">せいさくぶつ</span>
+    <div class="grid">
+      <a class="card" href="#work-1"><div class="thumb"><img src="sakuhinn/dagashi-music002.png" alt="dagashi × music"></div><div class="meta"><span class="tag pop">Web / UI</span><span class="t">dagashi × music</span></div></a>
+      <a class="card" href="#work-2"><div class="thumb"><img src="sakuhinn/Digestion001.png" alt="Digestion〈消化〉"></div><div class="meta"><span class="tag pop">Web / 3D</span><span class="t">Digestion〈消化〉</span></div></a>
+      <a class="card" href="#work-3"><div class="thumb"><img src="sakuhinn/work01_icon.png" alt="MIO to Mercury Light Operation"></div><div class="meta"><span class="tag pop">UI / 体験展示</span><span class="t">MIO to Mercury Light Operation</span></div></a>
+      <a class="card" href="#work-4"><div class="thumb"><img src="sakuhinn/fivefingers.jpg" alt="Five Fingers - King -"></div><div class="meta"><span class="tag pop">アプリ / UI</span><span class="t">Five Fingers - King -</span></div></a>
+      <a class="card" href="#work-5"><div class="thumb"><img src="sakuhinn/えほんのせかい.jpg" alt="えほんのせかい（MDFgame）"></div><div class="meta"><span class="tag pop">Web / 子ども向け</span><span class="t">えほんのせかい（MDFgame）</span></div></a>
+      <a class="card" href="#work-6"><div class="thumb"><img src="sakuhinn/bunnkai.png" alt="分解して理解する。"></div><div class="meta"><span class="tag pop">Web / 学習ゲーム</span><span class="t">分解して理解する。</span></div></a>
+      <a class="card" href="#work-7"><div class="thumb"><img src="sakuhinn/IMG_0186.JPG" alt="横浜と人の流れ"></div><div class="meta"><span class="tag pop">映像・写真</span><span class="t">横浜と人の流れ</span></div></a>
+      <a class="card" href="#work-8"><div class="thumb"><img src="sakuhinn/morumotto (2).png" alt="モルモット1"></div><div class="meta"><span class="tag pop">ゲーム / UI</span><span class="t">モルモット1</span></div></a>
+    </div>
+    <a class="more" href="#archive">
+      <div class="more-inner">
+        <img src="images/motto.png" alt="">
+        <span class="pop">えほん</span>
+      </div>
+    </a>
+    <div class="totop">
+      <a href="#top">
+        <img src="images/top.png" alt="">
+        <span class="pop">トップにもどる</span>
+      </a>
+    </div>
+  </section>
+
+  <footer class="main-footer" id="sns">
+    <div class="sns">
+      <a href="https://www.vivivit.com/dvy1moycfgpmhpt14cni" target="_blank" rel="noopener noreferrer">ViViViT</a>
+      <a href="https://www.instagram.com/gumigaeru_modoke/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+    <nav aria-label="フッターメニュー">
+      <a class="pop" href="#about">ワタシについて</a>
+      <a class="pop" href="#archive">せいさくぶつ</a>
+      <a class="pop" href="#sns">SNS</a>
+    </nav>
+  </footer>
+</div>
+
+<!-- 2. 自己紹介詳細ページ（#about） -->
+<section class="about-page" id="about-page" hidden>
+  <div class="sub-nav">
+    <a class="back pop" href="#top">← トップにもどる</a>
+  </div>
+  <div>
+    <span class="label pop">PROFiLE</span>
+    <span class="kana pop">ワタシについて</span>
+  </div>
+
+  <div class="about-hero">
+    <div class="about-avatar"><img src="images/hyoko.png" alt="太田 華"></div>
+    <div>
+      <span class="ruby">おおた はな</span>
+      <h2 class="pop">太田 華 <small style="font-size:12px;font-weight:400">Ota Hana</small></h2>
+      <p class="univ">東京造形大学 造形学部 デザイン学科<br>メディアデザイン専攻領域 3年（2028年3月卒業見込み）</p>
+      <span class="role pop">志望：UI/UX・Web・アプリデザイナー</span>
+    </div>
+  </div>
+
+  <div class="about-block">
+    <h3 class="pop">ものづくりの軸</h3>
+    <div class="catchcopy">「見やすさ、使いやすさ、使いたくなる楽しさ」で、人の感情を動かしたい。</div>
+    <p>「自分以外のだれかのことを想ってつくること」を原点に、使う人の視点に寄り添うUI/UXデザインに取り組んでいます。課題を解決するだけでなく、触った瞬間の「わくわく感」とほっとする「安心感」が両立する、優しい体験を届けることを目指しています。</p>
+  </div>
+
+  <div class="about-block">
+    <h3 class="pop">受賞歴</h3>
+    <div class="award-list">
+      <div class="award-box">
+        <span class="award-badge pop">2025.03 受賞</span>
+        <div style="font-weight:700">第21回 ACジャパン広告学生賞 テレビCM部門 奨励賞</div>
+        <div style="font-size:12px">作品名：『ベットはどんなとこ？』</div>
+      </div>
+      <div class="award-box">
+        <span class="award-badge pop">2024.01 受賞</span>
+        <div style="font-weight:700">第32回 神奈川県工業高等学校生徒研究発表会 青少年センター館長賞</div>
+      </div>
+      <div class="award-box">
+        <span class="award-badge pop">2023.11 受賞</span>
+        <div style="font-weight:700">ひたちなかプロジェクションマッピング in ひたちなか開運鐵道神社 最優秀賞</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-block">
+    <h3 class="pop">ワタシの3つの強み</h3>
+    <ul class="strength-list">
+      <li><b>1. 相手視点に立った設計・構成力</b>高校・大学での数々の受賞経験を通じ、目的やターゲットを深く捉え、直感的に「伝わる・迷わない」構造をつくる力を培いました。</li>
+      <li><b>2. 親しみやすいビジュアル×モーション表現</b>手描きの温かみを活かしたイラストや、After Effects等を用いた心地よいアニメーションで、UIに楽しさや安心感をプラスできます。</li>
+      <li><b>3. デザインから実装までの一貫対応</b>FigmaでのUI設計に加え、HTML / CSS / JavaScript を用いて実際に動くWebサイト（本ポートフォリオなど）として形にできます。</li>
+    </ul>
+  </div>
+
+  <div class="about-block">
+    <h3 class="pop">スキルセット</h3>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <span class="name">Illustrator</span>
+        <span class="yr">4年以上の経験</span>
+        <span class="desc">ロゴ・アイコン・UIパーツ・ベクターイラスト</span>
+      </div>
+      <div class="skill-card">
+        <span class="name">Photoshop</span>
+        <span class="yr">4年以上の経験</span>
+        <span class="desc">画像合成・レタッチ・ビジュアル制作</span>
+      </div>
+      <div class="skill-card">
+        <span class="name">HTML / CSS</span>
+        <span class="yr">3年の経験</span>
+        <span class="desc">レスポンシブ設計・Webサイト構築</span>
+      </div>
+      <div class="skill-card">
+        <span class="name">After Effects</span>
+        <span class="yr">3年の経験</span>
+        <span class="desc">UIモーション・映像演出・アニメーション</span>
+      </div>
+      <div class="skill-card">
+        <span class="name">Premiere</span>
+        <span class="yr">3年の経験</span>
+        <span class="desc">映像編集・プロモーション動画制作</span>
+      </div>
+      <div class="skill-card">
+        <span class="name">JavaScript</span>
+        <span class="yr">2年の経験</span>
+        <span class="desc">画面遷移・インタラクション実装</span>
+      </div>
+      <div class="skill-card">
+        <span class="name">Lightroom Classic</span>
+        <span class="yr">2年の経験</span>
+        <span class="desc">写真の色調補正・トーン統一</span>
+      </div>
+      <div class="skill-card">
+        <span class="name">Figma / Blender / Unity</span>
+        <span class="yr">制作・学習中</span>
+        <span class="desc">UIプロトタイプ・3D表現・インタラクティブ制作</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-block">
+    <h3 class="pop">学歴・資格</h3>
+    <ul class="history-list">
+      <li><span>2021.04</span>神奈川県立神奈川工業高等学校 デザイン科 入学</li>
+      <li><span>2022.07</span>実用英語技能検定 2級 取得</li>
+      <li><span>2024.03</span>神奈川県立神奈川工業高等学校 デザイン科 卒業</li>
+      <li><span>2024.04</span>東京造形大学 造形学部 デザイン学科 メディアデザイン専攻領域 入学</li>
+      <li><span>2028.03</span>東京造形大学 卒業見込み</li>
+    </ul>
+    <a class="vivivit-btn pop" href="https://www.vivivit.com/dvy1moycfgpmhpt14cni" target="_blank" rel="noopener noreferrer">ViViViT のポートフォリオも見る ↗</a>
+  </div>
+
+  <div class="about-block">
+    <h3 class="pop">すきなこと</h3>
+    <p style="font-size:13px">小中学生時代にスポーツをしていたため、身体を動かすことが好きです。一方で、ゆっくり自分の時間を過ごすのも大切にしています。</p>
+    <div class="like-tags">
+      <span># ジム</span>
+      <span># ゲーム実況</span>
+      <span># 料理</span>
+      <span># たべること</span>
+      <span># 写真</span>
+      <span># 横浜</span>
+      <span># ぬいぐるみ</span>
+      <span># 絵本</span>
+    </div>
+  </div>
+
+  <div class="totop">
+    <a href="#about" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+      <img src="images/top.png" alt="">
+      <span class="pop">うえにもどる</span>
+    </a>
+  </div>
+
+  <div class="sub-footer pop" style="margin-left:-18px;margin-right:-18px">© Ota Hana</div>
+</section>
+
+<!-- 3. 全作品一覧ページ（#archive：絵本テーマ） -->
+<section class="archive-page" id="archive-page" hidden>
+  <div class="sub-nav">
+    <a class="back pop" href="#top">← トップにもどる</a>
+  </div>
+  <div>
+    <span class="label pop">WORKS BOOK</span>
+    <span class="kana pop">せいさくぶつのえほん</span>
+  </div>
+  <p class="book-intro">ページをめくるように、これまでの制作物を一覧でご覧いただけます。気になる作品のページをタップすると詳細が開きます。</p>
+
+  <div class="book-cover">
+    <div class="bookmark-ribbon" aria-hidden="true"></div>
+    <div class="book-spread" id="book-spread"></div>
+  </div>
+
+  <div class="book-controls">
+    <button type="button" class="flip-btn pop" id="prev-spread">← まえのページ</button>
+    <div class="page-dots" id="page-dots"></div>
+    <button type="button" class="flip-btn pop" id="next-spread">つぎのページ →</button>
+  </div>
+
+  <div class="totop">
+    <a href="#archive" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+      <img src="images/top.png" alt="">
+      <span class="pop">うえにもどる</span>
+    </a>
+  </div>
+
+  <div class="sub-footer pop" style="margin-left:-16px;margin-right:-16px">© Ota Hana</div>
+</section>
+
+<!-- 4. 作品詳細ページ（#work-1〜：白背景・作品集中画面） -->
+<section class="detail-page" id="detail" hidden></section>
+
+</div>
+
+<script>
+const W=[
+  {
+    t:"dagashi × music",
+    cat:"Web / UI",
+    year:"2026年 制作",
+    url:"https://otahana.github.io/dagashi-music/",
+    catchcopy:"「子どもの頃に感じた『かっこいい』に、大人になった今、もう一度出会う場所」",
+    role:"企画 / UI・3Dビジュアル設計 / フロントエンド実装（個人制作）",
+    period:"約一週間（Vibe Coding）",
+    tools:"HTML5 / CSS3 / JavaScript / Three.js (WebGL) / Web Audio API / GitHub Pages",
+    story:[
+      "久しぶりに駄菓子を手に取ったとき、ゴーゴーラムネのスライド式キャップの構造を見て、「子どもの頃、このギミックに洗練されたかっこよさを感じていたな」と思い出しました。その記憶にあるスタイリッシュさを現代のデジタルプロダクトの文脈で再構築したいと考えたのが制作の出発点です。",
+      "さらに、キャップの笛構造から「これで音楽が作れるのではないか」と着想を広げ、さくらんぼ餅やヤッター！めんなど、他の駄菓子が持つ独特の動作や音も楽器として掛け合わせました。完成した『dagashi × music』は、身近だった駄菓子の魅力に、大人になってから新しい形で再会できるインタラクティブな空間になっています。"
+    ],
+    gimmicks:[
+      {name:"1. ゴーゴーラムネ（スライド式キャップの笛ギミック）",desc:"スライド操作と連動して音が鳴る、本作品の原点となったインタラクション。"},
+      {name:"2. さくらんぼ餅（リズム・ビート表現）",desc:"一つずつピックで刺して食べるリズミカルな動作を音の仕掛けへと昇華。"},
+      {name:"3. ヤッター！めん（軽快なアクセント音）",desc:"蓋をめくるワクワク感や食感の楽しさを音楽のフレーズに組み込みました。"}
+    ],
+    points:[
+      {h:"2時間での高速プロトタイピング（Vibe Coding）",b:"AIとの対話による高速なプロトタイピング（Vibe Coding）を取り入れ、わずか2時間の制作時間で、2Dから3D点群表現へのピボットやWeb Audio APIを用いた音源・シーケンサーの実装まで、手触りや音の心地よさをリアルタイムで検証しながら形にしました。"},
+      {h:"ノスタルジーとスタイリッシュさの融合",b:"子ども時代の記憶にある「駄菓子のかっこよさ」を、Three.jsによる洗練された3D点群ビジュアルと直感的な操作感で表現しています。"}
+    ],
+    emoji:"🍬🎵",
+    img:"sakuhinn/dagashi-music002.png",
+    subImgs:["sakuhinn/dagashi-music001.png","sakuhinn/dagashi-music002.png"]
+  },
+  {
+    t:"Digestion〈消化〉",
+    cat:"Web / 3D",
+    year:"2026年 制作",
+    url:"https://otahana.github.io/Digestion/",
+    catchcopy:"「食べることで、大切なものの力や願いを受け取る」",
+    role:"企画・リサーチ / UI・ビジュアルデザイン / 3Dモデリング（プロシージャル点群生成）/ フロントエンド実装",
+    period:"2日（Vibe Coding）",
+    tools:"HTML / CSS / JavaScript / Three.js (WebGL)",
+    story:[
+      "「食べることで、大切なものの力や願いを受け取る」という人間の根源的な感覚をテーマにしたWebアート・アーカイブ作品です。キリスト教の聖体拝領と、日本の日常に息づく食文化・民間信仰の共通点を紐解き、フォトグラメトリ風の3D点群表現とインタラクティブなテキスト体験によって視覚化しました。",
+      "西洋美術史の講義で触れた『パンをキリストの体として食べる（象徴的カニバリズム）』という発想から着想を得て、「お米一粒には七人の神様がいる」「鏡開き・直会」「呑符（とんぷ）」「爪の垢を煎じて飲む」といった5つのモチーフを標本（SCAN 01〜05）として抽出。文化や時代を超えて共通する『取り込んで同化したい』という祈りの構造を浮かび上がらせました。"
+    ],
+    gimmicks:[
+      {name:"SCAN 01：聖体拝領（THE HOSTIA）",desc:"キリストの体としてパンを受け取る儀式を象徴する点群標本。"},
+      {name:"SCAN 02〜05：日本の食文化・民間信仰モチーフ",desc:"「お米一粒の七人の神様」「鏡開き・直会」「呑符」「爪の垢を煎じて飲む」の4つの身近な文化を標本化。"}
+    ],
+    points:[
+      {h:"フォトグラメトリ風3D点群（Three.js）",b:"実体と記憶のあいまいさや対象に宿る「気配」を表現するため、高密度の点群（Point Cloud）で5つのモチーフを構築。聖体の十字や米粒の中の七人の神など、目に見えない霊性の核をビビッドグリーンで際立たせました。"},
+      {h:"空間と色彩のコントラスト",b:"前半は静謐なギャラリーのような白空間で各標本を鑑賞し、後半の思索パートへスクロールすると、生命力と循環を象徴するビビッドグリーン（#4ce85c）へと空間全体が切り替わる演出を設計しました。"},
+      {h:"言葉と視覚が連動するUI",b:"本文中のキーワードや5つの標本リストにカーソルを合わせる（タップする）ことで、余白の注釈や背後の3Dモデルがリアルタイムに切り替わり、読む行為と見る行為が一体となる体験を目指しました。"}
+    ],
+    emoji:"🌿",
+    img:"sakuhinn/Digestion001.png",
+    subImgs:["sakuhinn/Digestion001.png","sakuhinn/Digestion002.png"]
+  },
+  {
+    t:"MIO to Mercury Light Operation",
+    cat:"UI / 体験展示",
+    year:"2026年 制作",
+    url:"https://go-mio.github.io/",
+    urlLabel:"公式サイトを見る ↗",
+    catchcopy:"「来場者がオペレーターとなり、太陽光で水星探査機『みお』へエネルギーを届ける体験型シミュレーター」",
+    role:"企画 / コックピットUI・ドットグラフィック設計 / プログラム実装",
+    period:"2026.09 ~ 2026.11 (約2カ月)",
+    tools:"Processing / Arduino / 7インチ円形タッチディスプレイ / Windows",
+    story:[
+      "過酷な宇宙環境で活躍する水星磁気圏探査機『みお』に親しみと興味を持ってもらうための体験型インタラクティブ・インスタレーションです。来場者はオペレーターとなり、展示台に配置された鏡を自由に動かして太陽光に見立てた光線の軌道をパズルのようにコントロールし、光センサーへと導きます。",
+      "センサーへ光が到達すると卓上の7インチ円形コックピット画面が反応し、エネルギーのチャージが開始されます。光の照射量に応じて10段階のアーチゲージやプログレスバーがリアルタイムに変化し、100%に達すると『水星周回軌道投入（MERCURY ORBIT INSERTION）』のシグナルとともにミッション成功の軌道飛行アニメーションへ移行します。"
+    ],
+    gimmicks:[
+      {name:"1. 光の軌道パズル（フィジカル操作）",desc:"様々な角度に光を反射・屈折させる鏡を動かし、集光目標である光センサーまで光を届ける体験。"},
+      {name:"2. リアルタイム・テレメトリUI（チャージ演出）",desc:"光の照射量に応じて10セグメントのアーチメーターや警告灯が変化。エネルギー不足時の赤色点滅から安定状態まで視覚的にフィードバック。"},
+      {name:"3. 水星周回軌道投入アニメーション（100%達成時）",desc:"イージング拡大で水星が出現し、探査機『みお』が遠近感を伴いながら楕円軌道を周回して観測レーザーを照射します。"}
+    ],
+    points:[
+      {h:"SF操縦パネルをイメージしたレトロ・サイバー調ドットUI",b:"背景のグリッド線や星空、照準ターゲット、画面端のコーナーフレームなど、円形ディスプレイの中で宇宙空間の探査機を遠隔監視しているような没入感を設計しました。"},
+      {h:"状態が一目で伝わる視覚演出",b:"『みお』の浮遊アニメーションやエネルギー低下時の警告点滅、100%達成時のレーザーパルス描画など、言葉がなくても直感的に状況がわかるUIアニメーションを実装しています。"}
+    ],
+    video:"sakuhinn/WORK 01_Promotional video.mp4",
+    emoji:"🛰️🪐",
+    img:"sakuhinn/work01_icon.png",
+    subImgs:["sakuhinn/work01_icon.png",""]
+  },
+  {
+    t:"Five Fingers - King -",
+    cat:"アプリ / UI",
+    year:"2024年設計 / 2026年実装",
+    url:"https://otahana.github.io/Five-Fingers---King--/",
+    urlLabel:"実際にゲームで遊ぶ ↗",
+    catchcopy:"「伝統的な指遊びから生まれた、心理戦指ゲームアプリ」",
+    role:"ゲーム企画・ルールデザイン / テストプレイ検証 / UI・ビジュアルデザイン / フロントエンド実装（バイブコーディング）",
+    period:"2024年5月〜8月（UI・ルール設計）、2026年（Webアプリ実装）",
+    tools:"Figma / Illustrator（UIデザイン）、HTML / CSS / JavaScript（Webアプリ実装）",
+    story:[
+      "古くから親しまれている『指遊び』や『マッチ棒ゲーム』の構造を分析し、独自の心理戦ルールへと発展させたオリジナルゲームおよびUI/UXデザイン作品です。対面でのアナログな駆け引きの面白さをそのままデジタル体験へ昇華させることを目指し、2024年に企画・ルール設計・UIデザインを制作しました。",
+      "その後、当時のデザインカンプをもとにバイブコーディング（AIとの対話型開発）を用いて、実際にブラウザ上でCPUと対戦できるWebアプリとして実装。5本の指それぞれに『王・姫・兵・子×2』の役職を割り振り、1周ごとに生き残った指の役職が入れ替わる緊張感と逆転性を実現しました。"
+    ],
+    gimmicks:[
+      {name:"1. リサーチ＆発想（グループワーク）",desc:"既存の指遊びを実際にプレイして構造を分解し、KJ法やブレインストーミングで駆け引きが生まれる要素を抽出。"},
+      {name:"2. オリジナルルールの設計と検証（個人ワーク）",desc:"「王・姫・兵・子×2」の非対称役職と、「1周ごとの役職シャッフル」をテストプレイを重ねて確立。"},
+      {name:"3. UIデザインからWebアプリ実装へ",desc:"手書き風の温かみあるビジュアルに加え、CPUの「迷うそぶり」など画面越しでも相手の心理を読める演出を実装。"}
+    ],
+    points:[
+      {h:"手のイラストをそのままUIに落とし込んだ直感設計",b:"画面上の5本の指に直接役職アイコンを配置・スワップできるセットアップ画面や、攻撃対象となるプレイヤーの手が黒く反転して選択可能になる視覚的フィードバックを採用し、説明なしでも直感的に操作できる体験を目指しました。"},
+      {h:"デジタルならではの心理戦演出",b:"対面の空気感を再現するため、CPUがどの指を狙うか迷う視線の動き（赤いターゲット表示）や、現在の手番・攻撃対象の明確なステータス表示を組み込み、1人でも白熱した読み合いが楽しめる設計としました。"}
+    ],
+    emoji:"🖐️👑",
+    img:"sakuhinn/fivefingers.jpg",
+    subImgs:["sakuhinn/fivefingers.jpg"]
+  },
+  {
+    t:"えほんのせかい",
+    cat:"Web / 子ども向け",
+    year:"2025.04〜2025.08 制作",
+    url:"https://otahana.github.io/ehon-no-sekai/",
+    urlLabel:"実際に絵本を体験する ↗",
+    catchcopy:"「ジェスチャーでページをめくる、5〜12歳の子ども向け体験型デジタル絵本ゲーム」",
+    role:"企画・世界観設計 / UI・ビジュアルデザイン / モーション学習（Teachable Machine）/ フロントエンド実装",
+    period:"2025.04〜2025.08",
+    tools:"HTML / CSS / JavaScript / Teachable Machine（Webカメラ・ジェスチャー認識）",
+    story:[
+      "『実際に紙の絵本をめくるときのドキドキ感を、デジタル空間でも体感してほしい』という想いから制作した、5〜12歳の子ども向けストーリーゲームです。Googleの機械学習ツール『Teachable Machine』による画像・モーション認識を取り入れ、画面に向かって手を振るなどのジェスチャーで絵本のページをめくりながら物語を読み進めるインタラクティブな体験を設計しました。",
+      "従来のクリックやタップだけのデジタル絵本ではなく、子どもが自分の体を動かして『ページをめくる』という直感的なアクションを取り入れることで、物語の世界へ没入する楽しさを追求しています。"
+    ],
+    gimmicks:[
+      {name:"1. 身体性を伴う読書体験の再現",desc:"画面に向かって手を振るなどのジェスチャーでページをめくり、物語へ没入する楽しさを実現。"},
+      {name:"2. 対象年齢（5〜12歳）に寄り添った設計",desc:"小さな子どもでも迷わず操作できるよう情報要素を最小限に抑え、温かみのある色彩とビジュアルで統一。"},
+      {name:"3. ジェスチャー操作とクリック操作の両立",desc:"Webカメラを通じたモーション認識に加えマウスクリックにも対応し、環境を問わず最後まで楽しめる設計。"}
+    ],
+    points:[
+      {h:"次のアクションを促すジェスチャー誘導UI",b:"文字での長い説明に頼らず、画面左側のアイコンやアニメーションによって『次にどんなジェスチャーをすればページがめくれるか』を視覚的に誘導する仕組みを取り入れました。"},
+      {h:"環境を選ばないアクセシビリティ設計",b:"カメラを使った身体的なジェスチャー体験を主軸にしつつ、基本操作としてクリック操作も併用できる設計にすることで、どの端末・環境でもスムーズに物語を体験できるようにしています。"}
+    ],
+    emoji:"📖✨",
+    img:"sakuhinn/えほんのせかい.jpg",
+    subImgs:["sakuhinn/えほんのせかい.jpg"]
+  },
+  {
+    t:"分解して理解する。",
+    cat:"Web / 学習ゲーム",
+    year:"2025年4月〜12月 制作",
+    url:"https://otahana.github.io/bunnkai-rikai/",
+    urlLabel:"実際に分解して遊ぶ ↗",
+    catchcopy:"「実写コマ撮りアニメーションでモノの構造を紐解く、学習型Webゲーム」",
+    role:"企画・コンセプト設計 / 絵コンテ / 実写コマ撮り撮影・画像レタッチ / UI・ビジュアルデザイン / フロントエンド実装",
+    period:"2025.04 〜 2025.12",
+    tools:"HTML / CSS / JavaScript / Photoshop / After Effects / VS Code",
+    story:[
+      "AIの普及やテクノロジーの利便化によって『ブラックボックス化した日常のモノ』の仕組みを深く知る機会が減っている現代において、『自らの手で分解し、構造を理解する楽しさ』を再認識してもらうために制作したPC向け2D Webゲームです。",
+      "NHK Eテレ『デザインあ』の「解散！」から着想を得て、実物のおもちゃ（ミニカー）やスーパーファミコンのコントローラーを実際に1パーツずつ分解しながら撮影したストップモーション（コマ撮り）写真を、Web上のインタラクティブな体験へと落とし込みました。"
+    ],
+    gimmicks:[
+      {name:"1. 身近なモチーフの選定と分解設計",desc:"「ミニカー」と「スーパーファミコンのコントローラー」を選定。絵コンテでの検証とテスト分解を重ね、視覚的に最も面白く構造が伝わる分解順序を設計しました。"},
+      {name:"2. 実写コマ撮りとデジタルUIの融合",desc:"イラストではなく実物写真を使うことで、プラスチックの質感や内部パーツのリアルな噛み合わせを直感的に伝えるビジュアルを目指しました。"},
+      {name:"3. 制作プロセスでの学び・今後の展望",desc:"撮影・レタッチ工程に多くの時間を要したため、当初予定していたUnityからWeb技術（HTML/CSS/JS）へ柔軟に方針転換し期間内に完成。今後はプレイヤーが好きなパーツから自由に外せる「分岐型の分解システム」への発展を目指しています。"}
+    ],
+    points:[
+      {h:"説明不要の直感的なUI/UX設計",b:"方眼紙（グリッド）をベースにした清潔感のある画面構成のなかに、コマ送り・コマ戻し（next / back）のボタンUIを配置。ボタンへのホバー時やアニメーション再生時に効果音が鳴る仕掛けを取り入れ、説明を読まなくても触りたくなるゲーム性を生み出しました。"},
+      {h:"膨大な実写素材のレタッチと軽量化",b:"撮影時に生じたコマごとのわずかな明度差や影のブレによる違和感をなくすため、Photoshopで写真を1枚ずつ丁寧に補正・切り抜きを実施。さらにWeb上で軽快に動作するよう画像サイズを最適化し、素のJavaScriptによる配列管理でスムーズなコマ送りアニメーションを実現しました。"}
+    ],
+    emoji:"🔧🚗",
+    img:"sakuhinn/bunnkai.png",
+    subImgs:["sakuhinn/bunnkai001.png","sakuhinn/bunnkai002.png"]
+  },
+  {
+    t:"横浜と人の流れ",
+    cat:"映像・写真",
+    year:"2025年12月 制作",
+    catchcopy:"「モノクロ写真で捉える、都市の表情と人の気配」",
+    role:"企画・構成 / ロケハン・スチール撮影 / 写真レタッチ / スライドショー映像編集",
+    period:"2025.12（約2週間）",
+    tools:"カメラ撮影 / Lightroom Classic / Premiere（MP4 / 1920×1080px / 00:03:03）",
+    story:[
+      "自身の地元である横浜（横浜駅からみなとみらい、元町エリア）を舞台に、都市の建築空間とそこを行き交う『人の流れ』を切り取ったモノクロ写真のスライドショー映像作品（再生時間：3分3秒）です。",
+      "2週間という制作期間の中でエリアごとに異なる街の空気感を撮影し、異なる時間帯や場所の写真を互い違いに織り交ぜる編集手法によって、一つの連続したストーリーのような体験へと昇華させました。"
+    ],
+    gimmicks:[
+      {name:"1. 地元・横浜の多面的な表情を辿る",desc:"巨大なターミナル駅「横浜駅」、近代的なビル群の「みなとみらい」、歴史ある街並みの「元町」の3エリアを撮影し、場所ごとの都市構造と人の動き方の違いを視覚化。"},
+      {name:"2. モノクロームによる「光と動き」の抽出",desc:"あえて色彩情報を削ぎ落としたモノクロ写真を採用することで、ビル群の幾何学的な陰影や夜の光、歩行者の動きの軌跡を際立たせ、都市に息づく時間の流れを強調。"}
+    ],
+    points:[
+      {h:"異なる時間・場所を一つの物語に繋ぐ「互い違いの構成」",b:"撮影した一連の写真を単なる時系列やエリア順で並べるのではなく、連続する写真の間に別の場所・異なる時間帯のカットを一枚ずつ互い違いに差し込む構成を採用。同じ『横浜』という都市の中で移り変わる時間や空気感の対比が生まれ、街を歩き続けているかのような一つのストーリーとして感じられる演出を目指しました[cite: 30]。"},
+      {h:"写真の連なりが生むリズムと余韻",b:"静止画をスライドショー映像（1920×1080 / 29.97fps）として組み立てることで、カットの切り替わりが持つリズムや、歩行のテンポ、静と動のコントラストが心地よく残る映像に仕上げました。"}
+    ],
+    video:"sakuhinn/【横浜と人の流れ】_太田華.mp4",
+    emoji:"🏙️📷",
+    img:"sakuhinn/IMG_0186.JPG",
+    subImgs:[]
+  },
+  {
+    t:"モルモット1（テーマ：モルモットの探検）",
+    cat:"ゲーム / UI",
+    year:"2025年5月〜6月 制作",
+    url:"https://github.com/otahana/morumoto/releases/tag/v1.0.0",
+    urlLabel:"ゲームデータをダウンロード ↗",
+    catchcopy:"「クイズ好きなモルモットを仲間にしてゴールを目指す、2D横スクロールアクション＆クイズゲーム」",
+    role:"企画・ゲームデザイン / ドット絵グラフィック制作 / UIデザイン / プログラミング実装（個人制作）",
+    period:"1ヶ月（2025年5月〜2025年6月）",
+    tools:"Unity / JavaScript / Photoshop / Illustrator（PC・1人プレイ）",
+    story:[
+      "温かみのあるドット絵ビジュアルで描かれた、PC向けの2D横スクロールアクション＆クイズゲームです[cite: 25]。従来のアクションゲームに多い『敵を倒す・避ける』といった要素をあえて排し、ステージ上に登場するモブキャラクター（モルモット）のクイズに答えて仲間を増やしていくゲームシステムを構築しました。",
+      "アクション操作が苦手な人でも、『可愛いモルモットに会いたい・一緒に歩きたい』というモチベーションで最後まで楽しめる体験を目指しました。"
+    ],
+    gimmicks:[
+      {name:"1. アクションが苦手な人にも開かれたゲームデザイン",desc:"単なる移動やジャンプだけでなく、誰でも気軽に楽しめる新しい遊びの軸として「クイズ」と「キャラクター収集」の要素を掛け合わせました。"},
+      {name:"2. 愛着を生むドット絵表現",desc:"主人公や仲間のモルモット、草地のステージまで親しみやすいピクセルアート（ドット絵）で統一し、画面を見るだけでほっこりする世界観を設計。"}
+    ],
+    points:[
+      {h:"敵ではなく「クイズを出す仲間」としてのモブ配置",b:"ステージ上に敵キャラクターを配置しない代わりに、個性豊かなモルモットをキーポイントとして配置。接触すると4択クイズが出題され、正解することでクリアへと近づく構成としました。"},
+      {h:"モチベーションを高める「追従システム」",b:"クイズに正解するとそのモルモットが仲間となり、プレイヤーの後ろを動きに合わせてトコトコと追従する仕組みを実装。仲間が増えて列になってついてくる視覚的な愛らしさが、次のモルモットを探したくなる原動力になっています。"},
+      {h:"直感的でシンプルな画面UI",b:"画面左上に仲間にしたモルモットの数（モルモット: 0 など）をシンプルに表示し、会話・クイズ画面ではキーボード操作（Enterキーなど）でテンポよく読み進められる分かりやすいレイアウトを採用しました。"}
+    ],
+    emoji:"🐹🌿",
+    img:"sakuhinn/morumotto (2).png",
+    subImgs:["sakuhinn/morumotto (3).png"]
+  },
+];
+
+let currentSpread = 0;
+
+function renderBook(direction = ""){
+  const spreadEl = document.getElementById("book-spread");
+  const dotsEl = document.getElementById("page-dots");
+  const prevBtn = document.getElementById("prev-spread");
+  const nextBtn = document.getElementById("next-spread");
+  if(!spreadEl) return;
+
+  const totalSpreads = Math.ceil(W.length / 2);
+  if(currentSpread < 0) currentSpread = 0;
+  if(currentSpread >= totalSpreads) currentSpread = totalSpreads - 1;
+
+  const leftIdx = currentSpread * 2;
+  const rightIdx = leftIdx + 1;
+
+  const makeLeaf = (idx, side) => {
+    const w = W[idx];
+    if(!w){
+      return `<div class="book-leaf ${side}"><div style="margin:auto;text-align:center;opacity:.45;font-size:12px" class="pop">おしまい 🐸</div><div class="leaf-num">- ${idx+1} -</div></div>`;
+    }
+    const thumb = w.img
+      ? `<img src="${w.img}" alt="${w.t}">`
+      : (w.video ? `<video src="${w.video}#t=0.5" muted playsinline preload="metadata"></video>` : (w.emoji || "🖼️"));
+    const turnClass = direction === "next" && side === "right" ? "turning-next" : (direction === "prev" && side === "left" ? "turning-prev" : "");
+    return `
+      <div class="book-leaf ${side} ${turnClass}">
+        <a class="leaf-card" href="#work-${idx+1}">
+          <div class="leaf-illus">${thumb}</div>
+          <span class="leaf-cat pop">${w.cat}</span>
+          <h4 class="leaf-title pop">${w.t}</h4>
+          <p class="leaf-sub">${w.year}</p>
+        </a>
+        <div class="leaf-num">- ${idx+1} -</div>
+      </div>
+    `;
+  };
+
+  spreadEl.innerHTML = makeLeaf(leftIdx, "left") + makeLeaf(rightIdx, "right");
+
+  if(direction){
+    requestAnimationFrame(()=>{
+      spreadEl.querySelectorAll(".book-leaf").forEach(el=>{
+        el.classList.remove("turning-next","turning-prev");
+      });
+    });
+  }
+
+  dotsEl.innerHTML = Array.from({length:totalSpreads}, (_,i)=>
+    `<span class="page-dot ${i===currentSpread?'active':''}"></span>`
+  ).join("");
+
+  prevBtn.disabled = currentSpread === 0;
+  nextBtn.disabled = currentSpread >= totalSpreads - 1;
+}
+
+document.getElementById("prev-spread").addEventListener("click", ()=>{
+  if(currentSpread > 0){ currentSpread--; renderBook("prev"); }
+});
+document.getElementById("next-spread").addEventListener("click", ()=>{
+  if(currentSpread < Math.ceil(W.length / 2) - 1){ currentSpread++; renderBook("next"); }
+});
+
+function route(){
+  const m = /^#work-(\d+)$/.exec(location.hash);
+  const home = document.getElementById("home");
+  const det = document.getElementById("detail");
+  const about = document.getElementById("about-page");
+  const archive = document.getElementById("archive-page");
+
+  home.hidden = true;
+  det.hidden = true;
+  about.hidden = true;
+  archive.hidden = true;
+
+  if(m && W[m[1]-1]){
+    const i = +m[1]-1, w = W[i], n = W.length;
+    const prev = (i+n-1)%n+1, next = (i+1)%n+1;
+    const mediaHtml = w.video
+      ? `<video id="work-video" src="${w.video}" poster="${w.img || ''}" controls playsinline preload="metadata"></video>
+         <div class="video-overlay" id="video-overlay">
+           <div class="play-circle"></div>
+           <span class="play-badge pop">▶ タップして動画を再生</span>
+         </div>`
+      : (w.img ? `<img src="${w.img}" alt="${w.t}">` : (w.emoji || "🖼️"));
+    const liveBtnHtml = w.url ? `<a class="live-btn pop" href="${w.url}" target="_blank" rel="noopener noreferrer">${w.urlLabel || "実際にサイトを触って遊ぶ ↗"}</a>` : "";
+    const catchHtml = w.catchcopy ? `<div class="catchcopy">${w.catchcopy}</div>` : "";
+    const storyHtml = (w.story||[]).map(p=>`<p>${p}</p>`).join("");
+    const gimmicksHtml = (w.gimmicks && w.gimmicks.length) ? `
+      <div class="d-block">
+        <h3 class="pop">体験の流れ・ギミック構成</h3>
+        <div class="gimmick-list">
+          ${w.gimmicks.map(g=>`<div class="gimmick-card"><b>${g.name}</b>${g.desc}</div>`).join("")}
+        </div>
+      </div>` : "";
+    const pointsHtml = (w.points||[]).map(pt=>`<li><b>${pt.h}</b>${pt.b}</li>`).join("");
+    const validSubs = (w.subImgs||[]).filter(Boolean);
+    const galleryHtml = validSubs.length ? `
+      <div class="d-block">
+        <h3 class="pop">画面キャプチャ・ビジュアル</h3>
+        <div class="sub-gallery">
+          ${validSubs.map((src,idx)=>`<div class="sub-shot"><img src="${src}" alt="${w.t} 画像${idx+1}"></div>`).join("")}
+        </div>
+      </div>` : "";
+
+    det.innerHTML = `
+      <div class="sub-nav">
+        <a class="back pop" href="#archive">← えほん一覧にもどる</a>
+        <a class="back pop" href="#top">トップへ</a>
+      </div>
+      <div class="d-header">
+        <div class="d-tags">
+          <span class="tag pop">${w.cat}</span>
+          <span class="d-year">${w.year}</span>
+        </div>
+        <h2 class="pop">${w.t}</h2>
+      </div>
+      <div class="dthumb">${mediaHtml}</div>
+      ${liveBtnHtml}
+
+      <div class="d-block">
+        <h3 class="pop">制作背景・コンセプト</h3>
+        ${catchHtml}
+        ${storyHtml}
+      </div>
+
+      ${gimmicksHtml}
+
+      <div class="d-block">
+        <h3 class="pop">こだわりポイント・制作プロセス</h3>
+        <ul class="point-list">${pointsHtml}</ul>
+      </div>
+
+      <div class="spec-box">
+        <div class="spec-row"><span class="spec-label">担当範囲</span><span class="spec-val">${w.role}</span></div>
+        <div class="spec-row"><span class="spec-label">制作時期</span><span class="spec-val">${w.period}</span></div>
+        <div class="spec-row"><span class="spec-label">使用技術</span><span class="spec-val">${w.tools}</span></div>
+      </div>
+
+      ${galleryHtml}
+
+      <div class="pn">
+        <a class="pop" href="#work-${prev}">← まえの作品</a>
+        <a class="pop" href="#work-${next}">つぎの作品 →</a>
+      </div>
+
+      <div class="sub-footer pop" style="margin-left:-18px;margin-right:-18px">© Ota Hana</div>
+    `;
+    det.hidden = false;
+    det.hidden = false;
+    const vid = document.getElementById("work-video");
+    const ov = document.getElementById("video-overlay");
+    if(vid && ov){
+      ov.addEventListener("click", ()=>{ ov.classList.add("hidden"); vid.play(); });
+      vid.addEventListener("play", ()=>{ ov.classList.add("hidden"); });
+    }
+    document.title = w.t + " | オオタ";
+    window.scrollTo({top:0,behavior:"instant"});
+  }else if(location.hash === "#about"){
+    about.hidden = false;
+    document.title = "ワタシについて | オオタ";
+    window.scrollTo({top:0,behavior:"instant"});
+  }else if(location.hash === "#archive"){
+    archive.hidden = false;
+    renderBook();
+    document.title = "せいさくぶつのえほん | オオタ";
+    window.scrollTo({top:0,behavior:"instant"});
+  }else{
+    home.hidden = false;
+    document.title = "オオタ | ポートフォリオ";
+    const el = location.hash.length > 1 && document.getElementById(location.hash.slice(1));
+    if(el) el.scrollIntoView();
+  }
+}
+addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>
